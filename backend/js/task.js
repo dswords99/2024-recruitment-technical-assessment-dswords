@@ -3,7 +3,20 @@
  * Task 1
  */
 function leafFiles(files) {
-    return [];
+    const visited = new Set();
+    const hasChild = new Set();
+
+    for (const file of files) {
+        if (file.parent !== -1) {
+            hasChild.add(file.parent);
+        }
+        
+        visited.add(file.id);
+    }
+
+    const leafFilesArr = Array.from(visited.difference(hasChild));
+
+    return leafFilesArr;
 }
 
 /**
